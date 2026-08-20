@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WebHub — Your Internet Launchpad</title>
+<title>linkhub — Your Internet Launchpad</title>
 <meta name="description" content="A fun hub for games, useful tools, random websites and more.">
 <style>
 :root{
@@ -149,7 +149,7 @@ function card(s){
 }
 function toggleFavourite(name){
  favourites=favourites.includes(name)?favourites.filter(x=>x!==name):[...favourites,name];
- localStorage.setItem("webhub-favourites",JSON.stringify(favourites));
+ localStorage.setItem("linkhub-favourites",JSON.stringify(favourites));
  render(document.getElementById("search").value);
 }
 function showFavourites(){favOnly=!favOnly;render(document.getElementById("search").value)}
