@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>linkhub — Your Internet Launchpad</title>
+<title>LinkHub — Your Internet Launchpad</title>
 <meta name="description" content="A fun hub for games, useful tools, random websites and more.">
 <style>
 :root{
@@ -115,7 +115,7 @@ const categories = {
  f1:["🏎️","F1","For when normal websites aren't fast enough."]
 };
 
-let favourites = JSON.parse(localStorage.getItem("linkhub-favourites") || "[]");
+let favourites = JSON.parse(localStorage.getItem("LinkHub-favourites") || "[]");
 let favOnly = false;
 
 function render(filter=""){
@@ -149,7 +149,7 @@ function card(s){
 }
 function toggleFavourite(name){
  favourites=favourites.includes(name)?favourites.filter(x=>x!==name):[...favourites,name];
- localStorage.setItem("linkhub-favourites",JSON.stringify(favourites));
+ localStorage.setItem("LinkHub-favourites",JSON.stringify(favourites));
  render(document.getElementById("search").value);
 }
 function showFavourites(){favOnly=!favOnly;render(document.getElementById("search").value)}
