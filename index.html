@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebHub — Your Internet Launchpad</title>
+<meta name="description" content="A fun hub for games, useful tools, random websites and more.">
+<style>
+:root{
+  --bg:#0a0d14;--panel:#111622;--panel2:#171d2b;--text:#f5f7fb;--muted:#9ba6ba;
+  --accent:#6c63ff;--accent2:#8f88ff;--border:#252d3d;--shadow:0 18px 50px rgba(0,0,0,.28)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:
+radial-gradient(circle at 20% -10%,rgba(108,99,255,.22),transparent 35%),
+radial-gradient(circle at 90% 10%,rgba(0,200,255,.10),transparent 28%),var(--bg);color:var(--text)}
+a{text-decoration:none;color:inherit}.wrap{max-width:1200px;margin:auto;padding:0 22px}
+nav{height:74px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.logo{font-size:22px;font-weight:850;letter-spacing:-.6px}.logo span{color:var(--accent2)}
+.navlinks{display:flex;gap:8px}.navlinks button{background:transparent;border:1px solid transparent;color:var(--muted);padding:9px 12px;border-radius:10px;cursor:pointer}
+.navlinks button:hover{background:var(--panel);color:var(--text);border-color:var(--border)}
+.hero{text-align:center;padding:68px 0 34px}.pill{display:inline-block;background:rgba(108,99,255,.13);border:1px solid rgba(108,99,255,.35);color:#b8b3ff;padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+h1{font-size:clamp(42px,7vw,76px);line-height:.98;letter-spacing:-3px;margin:18px auto 16px;max-width:850px}
+.gradient{background:linear-gradient(90deg,#fff,#9d98ff,#7be7ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:17px;margin:0 auto 28px;max-width:650px}
+.search{max-width:720px;margin:auto;position:relative}.search input{width:100%;padding:18px 22px 18px 52px;background:var(--panel);border:1px solid var(--border);border-radius:16px;color:var(--text);font-size:16px;outline:none;box-shadow:var(--shadow)}
+.search input:focus{border-color:var(--accent)}.search span{position:absolute;left:19px;top:16px;font-size:20px}
+.actions{display:flex;justify-content:center;gap:12px;margin-top:18px;flex-wrap:wrap}
+.btn{border:1px solid var(--border);background:var(--panel);color:var(--text);padding:12px 18px;border-radius:12px;font-weight:750;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent)}.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+section{padding:34px 0}.sectionhead{display:flex;justify-content:space-between;align-items:end;margin-bottom:17px}
+.sectionhead h2{margin:0;font-size:25px}.sectionhead p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:13px}
+.card{position:relative;background:linear-gradient(145deg,var(--panel),#0f141f);border:1px solid var(--border);border-radius:17px;padding:17px;min-height:145px;transition:.18s;overflow:hidden}
+.card:hover{transform:translateY(-4px);border-color:#3b4660;box-shadow:0 14px 35px rgba(0,0,0,.25)}
+.icon{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;background:var(--panel2);font-size:22px;margin-bottom:12px}
+.card h3{margin:0 0 6px;font-size:16px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45;padding-right:20px}
+.star{position:absolute;right:13px;top:13px;border:0;background:transparent;color:#566078;font-size:19px;cursor:pointer}.star.active{color:#ffd35a}
+.tags{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}.tag{font-size:10px;color:#aab4c8;background:#1a2130;padding:4px 7px;border-radius:7px}
+.empty{display:none;text-align:center;color:var(--muted);padding:40px;border:1px dashed var(--border);border-radius:16px}
+footer{border-top:1px solid var(--border);margin-top:40px;padding:30px 0;color:var(--muted);font-size:13px;text-align:center}
+@media(max-width:650px){.navlinks{display:none}.hero{padding-top:45px}h1{letter-spacing:-2px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{min-height:150px}.wrap{padding:0 14px}}
+@media(max-width:430px){.grid{grid-template-columns:1fr}.actions .btn{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <div class="logo">Web<span>Hub</span> ✦</div>
+  <div class="navlinks">
+    <button onclick="scrollToSection('games')">Games</button>
+    <button onclick="scrollToSection('fun')">Fun</button>
+    <button onclick="scrollToSection('useful')">Useful</button>
+    <button onclick="scrollToSection('f1')">F1</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="pill">YOUR INTERNET LAUNCHPAD</div>
+  <h1>Everything fun on the internet.<br><span class="gradient">One place.</span></h1>
+  <p>Games, random stuff, useful tools and websites to mess around with when you're bored.</p>
+  <div class="search"><span>⌕</span><input id="search" type="search" placeholder="Search websites, categories or tags..." autocomplete="off"></div>
+  <div class="actions">
+    <button class="btn primary" onclick="randomSite()">🎲 I'm Bored</button>
+    <button class="btn" onclick="showFavourites()">⭐ Favourites</button>
+    <button class="btn" onclick="clearSearch()">✕ Clear</button>
+  </div>
+</header>
+
+<main id="content"></main>
+<div id="empty" class="empty">Nothing found. Try another search.</div>
+
+<footer>Made for mates • Add your own links in the <b>sites</b> array in <code>index.html</code>.</footer>
+</div>
+
+<script>
+const sites = [
+ {name:"CrazyGames",url:"https://www.crazygames.com/",icon:"🎮",cat:"games",desc:"Thousands of free browser games.",tags:"multiplayer browser"},
+ {name:"Poki",url:"https://poki.com/",icon:"🕹️",cat:"games",desc:"A huge collection of quick online games.",tags:"browser casual"},
+ {name:"Coolmath Games",url:"https://www.coolmathgames.com/",icon:"🧠",cat:"games",desc:"Puzzle, strategy and classic browser games.",tags:"puzzle strategy"},
+ {name:"Gartic Phone",url:"https://garticphone.com/",icon:"✏️",cat:"games",desc:"Telephone meets drawing. Brilliant with mates.",tags:"friends drawing multiplayer"},
+ {name:"Skribbl.io",url:"https://skribbl.io/",icon:"🎨",cat:"games",desc:"Draw and guess words with your friends.",tags:"friends drawing"},
+ {name:"GeoGuessr",url:"https://www.geoguessr.com/",icon:"🌍",cat:"games",desc:"Guess where in the world you are.",tags:"geography maps"},
+ {name:"Akinator",url:"https://en.akinator.com/",icon:"🧞",cat:"games",desc:"Think of someone and see if it can guess them.",tags:"quiz guessing"},
+ {name:"2048",url:"https://play2048.co/",icon:"🔢",cat:"games",desc:"The classic number-merging puzzle.",tags:"puzzle"},
+ {name:"Neal.fun",url:"https://neal.fun/",icon:"🧪",cat:"fun",desc:"A collection of weird, clever internet experiments.",tags:"random experiments"},
+ {name:"The Useless Web",url:"https://theuselessweb.com/",icon:"🌐",cat:"fun",desc:"One button. One useless website. Endless chaos.",tags:"random"},
+ {name:"Radio Garden",url:"https://radio.garden/",icon:"📻",cat:"fun",desc:"Spin the globe and listen to live radio around the world.",tags:"music world"},
+ {name:"Quick, Draw!",url:"https://quickdraw.withgoogle.com/",icon:"🖊️",cat:"fun",desc:"See if a neural network can recognise your doodles.",tags:"google drawing ai"},
+ {name:"Google Feud",url:"https://www.googlefeud.com/",icon:"🔎",cat:"fun",desc:"Guess what people search for on Google.",tags:"quiz google"},
+ {name:"WindowSwap",url:"https://www.window-swap.com/",icon:"🪟",cat:"fun",desc:"Look through random people's windows around the world.",tags:"travel relaxing"},
+ {name:"Pointer Pointer",url:"https://pointerpointer.com/",icon:"👉",cat:"fun",desc:"Move your cursor. Something weird happens.",tags:"random"},
+ {name:"Google",url:"https://www.google.com/",icon:"🔍",cat:"useful",desc:"Search the web.",tags:"search"},
+ {name:"ChatGPT",url:"https://chatgpt.com/",icon:"🤖",cat:"useful",desc:"AI for questions, ideas, school and more.",tags:"ai school"},
+ {name:"Canva",url:"https://www.canva.com/",icon:"🖌️",cat:"useful",desc:"Make graphics, posters, presentations and more.",tags:"design school"},
+ {name:"Photopea",url:"https://www.photopea.com/",icon:"🖼️",cat:"useful",desc:"A powerful Photoshop-style editor in your browser.",tags:"photo editing design"},
+ {name:"Remove.bg",url:"https://www.remove.bg/",icon:"✂️",cat:"useful",desc:"Remove image backgrounds automatically.",tags:"images editing"},
+ {name:"Speedtest",url:"https://www.speedtest.net/",icon:"⚡",cat:"useful",desc:"Check your internet connection speed.",tags:"internet"},
+ {name:"Google Translate",url:"https://translate.google.com/",icon:"🌎",cat:"useful",desc:"Translate words, phrases and pages.",tags:"school language"},
+ {name:"Calculator",url:"https://www.google.com/search?q=calculator",icon:"🧮",cat:"useful",desc:"Quick Google calculator.",tags:"math school"},
+ {name:"Spotify",url:"https://open.spotify.com/",icon:"🎵",cat:"music",desc:"Music, podcasts and playlists.",tags:"music"},
+ {name:"YouTube",url:"https://www.youtube.com/",icon:"▶️",cat:"music",desc:"Videos, music, tutorials and basically everything.",tags:"video music"},
+ {name:"Music-Map",url:"https://www.music-map.com/",icon:"🎧",cat:"music",desc:"Find artists similar to artists you like.",tags:"music discovery"},
+ {name:"F1",url:"https://www.formula1.com/",icon:"🏎️",cat:"f1",desc:"Official Formula 1 news, standings and calendar.",tags:"racing motorsport"},
+ {name:"F1 Schedule",url:"https://www.formula1.com/en/racing/2026",icon:"📅",cat:"f1",desc:"Check the current F1 race calendar.",tags:"racing calendar"},
+ {name:"F1 Live Timing",url:"https://www.formula1.com/en/live",icon:"⏱️",cat:"f1",desc:"Official live F1 timing when sessions are running.",tags:"racing timing"},
+ {name:"RacingNews365",url:"https://racingnews365.com/",icon:"📰",cat:"f1",desc:"F1 news, rumours, results and analysis.",tags:"racing news"}
+];
+
+const categories = {
+ games:["🎮","Games","Stuff to play alone or with mates."],
+ fun:["😂","Random & Fun","The internet's weirdest and best distractions."],
+ useful:["🛠️","Useful","Tools you'll actually want to keep bookmarked."],
+ music:["🎵","Music","Listen, discover and mess around with music."],
+ f1:["🏎️","F1","For when normal websites aren't fast enough."]
+};
+
+let favourites = JSON.parse(localStorage.getItem("webhub-favourites") || "[]");
+let favOnly = false;
+
+function render(filter=""){
+ const content=document.getElementById("content"); content.innerHTML="";
+ const q=filter.trim().toLowerCase();
+ let shown=0;
+ for(const [cat,[emoji,title,subtitle]] of Object.entries(categories)){
+   const matches=sites.filter(s=>s.cat===cat && (!favOnly || favourites.includes(s.name)) &&
+      (!q || `${s.name} ${s.desc} ${s.tags} ${title}`.toLowerCase().includes(q)));
+   if(!matches.length) continue;
+   shown += matches.length;
+   const section=document.createElement("section"); section.id=cat;
+   section.innerHTML=`<div class="sectionhead"><div><h2>${emoji} ${title}</h2><p>${subtitle}</p></div></div><div class="grid"></div>`;
+   const grid=section.querySelector(".grid");
+   matches.forEach(s=>grid.appendChild(card(s)));
+   content.appendChild(section);
+ }
+ document.getElementById("empty").style.display=shown?"none":"block";
+}
+
+function card(s){
+ const el=document.createElement("a"); el.className="card"; el.href=s.url; el.target="_blank"; el.rel="noopener noreferrer";
+ const active=favourites.includes(s.name);
+ el.innerHTML=`<button class="star ${active?"active":""}" title="Favourite">★</button>
+ <div class="icon">${s.icon}</div><h3>${s.name}</h3><p>${s.desc}</p>
+ <div class="tags">${s.tags.split(" ").slice(0,3).map(t=>`<span class="tag">${t}</span>`).join("")}</div>`;
+ el.querySelector(".star").addEventListener("click",e=>{
+   e.preventDefault();e.stopPropagation();toggleFavourite(s.name);
+ });
+ return el;
+}
+function toggleFavourite(name){
+ favourites=favourites.includes(name)?favourites.filter(x=>x!==name):[...favourites,name];
+ localStorage.setItem("webhub-favourites",JSON.stringify(favourites));
+ render(document.getElementById("search").value);
+}
+function showFavourites(){favOnly=!favOnly;render(document.getElementById("search").value)}
+function randomSite(){
+ const pool=favOnly?sites.filter(s=>favourites.includes(s.name)):sites;
+ if(!pool.length){alert("You don't have any favourites yet!");return}
+ const s=pool[Math.floor(Math.random()*pool.length)];
+ window.open(s.url,"_blank","noopener,noreferrer");
+}
+function clearSearch(){document.getElementById("search").value="";favOnly=false;render()}
+function scrollToSection(id){document.getElementById(id)?.scrollIntoView({behavior:"smooth"})}
+document.getElementById("search").addEventListener("input",e=>{favOnly=false;render(e.target.value)});
+render();
+</script>
+</body>
+</html>
